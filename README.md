@@ -13,9 +13,9 @@
 - **`use_cases`**: Chứa các tác vụ nghiệp vụ, mô tả "công việc" ứng dụng cần thực hiện.
 - **`repositories`**: Interfaces mà lớp Data sẽ cài đặt, giúp giảm sự phụ thuộc giữa lớp Data và Domain.
 #### **Data**:
-##### **`models`**: Mô hình dữ liệu dùng để trao đổi dữ liệu giữa các lớp, thường có các phương thức để chuyển đổi từ/đến Entities.
-##### **`datasources`**: Cài đặt cụ thể cho việc truy cập dữ liệu, như API hoặc cơ sở dữ liệu địa phương.
-##### **`repositories`**: Cài đặt cụ thể của interfaces được định nghĩa trong Domain.
+- **`models`**: Mô hình dữ liệu dùng để trao đổi dữ liệu giữa các lớp, thường có các phương thức để chuyển đổi từ/đến Entities.
+- **`datasources`**: Cài đặt cụ thể cho việc truy cập dữ liệu, như API hoặc cơ sở dữ liệu địa phương.
+- **`repositories`**: Cài đặt cụ thể của interfaces được định nghĩa trong Domain.
 
 ## Quản lí state:
 - **Flutter Bloc**: Thư viện quản lý trạng thái ứng dụng dựa trên mô hình Bloc.
