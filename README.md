@@ -18,26 +18,26 @@
 ##### **`repositories`**: Cài đặt cụ thể của interfaces được định nghĩa trong Domain.
 
 ## Quản lí state:
-    - **Flutter Bloc**: Thư viện quản lý trạng thái ứng dụng dựa trên mô hình Bloc.
-    - **SetState**: Sử dụng cho các trạng thái đơn giản hoặc cần cập nhật trực tiếp trên UI.
+### **Flutter Bloc**: Thư viện quản lý trạng thái ứng dụng dựa trên mô hình Bloc.
+### **SetState**: Sử dụng cho các trạng thái đơn giản hoặc cần cập nhật trực tiếp trên UI.
 ## Quản lí route:
-    - **Auto Route**: Thư viện quản lý route, giúp quản lí route dễ dàng hơn.
+### **Auto Route**: Thư viện quản lý route, giúp quản lí route dễ dàng hơn.
 ## Quản lí Firebase:
-    - **Firebase Auth**: Đăng nhập, đăng ký, quên mật khẩu.
-    - **Firebase Firestore**: Lưu trữ dữ liệu.
-    - **Firebase Storage**: Lưu trữ file ảnh.
+### **Firebase Auth**: Đăng nhập, đăng ký, quên mật khẩu.
+### **Firebase Firestore**: Lưu trữ dữ liệu.
+### **Firebase Storage**: Lưu trữ file ảnh.
 ## Quản lí Local Database:
-    - **Sqflite**: Thư viện quản lý cơ sở dữ liệu địa phương.
+### **Sqflite**: Thư viện quản lý cơ sở dữ liệu địa phương.
 ## Các màn hình chính :
-    - **Login**: Đăng nhập.
-    - **Register**: Đăng ký.
-    - **Home**: Màn hình chính.
-    - **User**: Thông tin người dùng.
-    - **User Deatail**: Thông tin người dùng chi tiết, cho phép sửa, xoá
-    - **User Create**: Tạo mới thông tin người dùng
-    - **Product**: Quản lí sản phẩm.
-    - **Product Detail**: Chi tiết sản phẩm, cho phép sửa, xoá
-    - **Product Create**: Tạo mới sản phẩm
+### **Login**: Đăng nhập.
+### **Register**: Đăng ký.
+### **Home**: Màn hình chính.
+### **User**: Thông tin người dùng.
+### **User Deatail**: Thông tin người dùng chi tiết, cho phép sửa, xoá
+### **User Create**: Tạo mới thông tin người dùng
+### **Product**: Quản lí sản phẩm.
+### **Product Detail**: Chi tiết sản phẩm, cho phép sửa, xoá
+### **Product Create**: Tạo mới sản phẩm
 ## Cài đặt app trên Android Studio: 
     - Clone project về máy.
     - Mở terminal và chạy lệnh: flutter pub get
