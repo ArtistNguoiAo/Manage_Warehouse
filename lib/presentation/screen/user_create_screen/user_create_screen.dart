@@ -3,31 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:risky_coin/presentation/common/text_field_common.dart';
-import 'package:risky_coin/presentation/screen/product_create_screen/bloc/product_create_bloc.dart';
+import 'package:risky_coin/presentation/screen/user_create_screen/bloc/user_create_bloc.dart';
+import 'package:risky_coin/presentation/utils/color_utils.dart';
 import 'package:risky_coin/presentation/utils/text_style_utils.dart';
 
-import '../../utils/color_utils.dart';
-
 @RoutePage()
-class ProductCreateScreen extends StatelessWidget {
-  ProductCreateScreen({super.key});
+class UserCreateScreen extends StatelessWidget {
+  UserCreateScreen({super.key});
 
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController factoryController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCreateBloc()..add(ProductCreateInitEvent()),
-      child: BlocConsumer<ProductCreateBloc, ProductCreateState>(
+      create: (context) => UserCreateBloc()..add(UserCreateInitEvent()),
+      child: BlocConsumer<UserCreateBloc, UserCreateState>(
         listener: (context, state) {
-          if(state is ProductCreateSuccess) {
+          if(state is UserCreateSuccess) {
             AutoRouter.of(context).maybePop(true);
           }
-          if(state is ProductCreateError) {
+          if(state is UserCreateError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
@@ -36,18 +34,18 @@ class ProductCreateScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if(state is ProductCreateLoading) {
+          if(state is UserCreateLoading) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if(state is ProductCreateLoaded) {
+          if(state is UserCreateLoaded) {
             return Scaffold(
               appBar: AppBar(
                 title: const Text(
-                  "Thêm mới sản phẩm",
+                  "Thêm mới nhân viên",
                   style: TextStyle(
                     fontSize: 28,
                     color: Color(0xff000000),
@@ -60,16 +58,14 @@ class ProductCreateScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      _input("Tên sản phẩm", nameController),
+                      _input("Tên", nameController),
                       const SizedBox(height: 16.0),
-                      _input("Mô tả sản phẩm", descriptionController),
+                      _input("Email", emailController),
                       const SizedBox(height: 16.0),
-                      _input("Xưởng sản xuất", factoryController),
+                      _input("Số điện thoại", phoneController),
                       const SizedBox(height: 16.0),
-                      _input("Giá thành", priceController),
+                      _input("Địa chỉ", addressController),
                       const SizedBox(height: 16.0),
-                      _input("Số lượng", quantityController),
-                      const SizedBox(height: 32.0),
                       _buttonAdd(context),
                     ],
                   ),
@@ -85,30 +81,29 @@ class ProductCreateScreen extends StatelessWidget {
 
   Widget _input(String title, TextEditingController controller) {
     return TextFieldCommon(
-    style: TextStyleUtils.textStyleNunitoS18W500Black,
-    hintText: title,
-    prefixIcon: const Icon(
-      FontAwesomeIcons.receipt,
-      color: ColorUtils.primaryColor,
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: const BorderSide(color: ColorUtils.primaryColor),
-    ),
-    controller: controller,
+      style: TextStyleUtils.textStyleNunitoS18W500Black,
+      hintText: title,
+      prefixIcon: const Icon(
+        FontAwesomeIcons.receipt,
+        color: ColorUtils.primaryColor,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: ColorUtils.primaryColor),
+      ),
+      controller: controller,
     );
   }
 
   Widget _buttonAdd(BuildContext context) {
     return InkWell(
       onTap: () {
-        BlocProvider.of<ProductCreateBloc>(context).add(
-          ProductCreateAddEvent(
+        context.read<UserCreateBloc>().add(
+          UserCreateAddEvent(
             name: nameController.text,
-            description: descriptionController.text,
-            workshop: factoryController.text,
-            price: priceController.text,
-            quantity: quantityController.text,
+            email: emailController.text,
+            phone: phoneController.text,
+            address: addressController.text,
           ),
         );
       },

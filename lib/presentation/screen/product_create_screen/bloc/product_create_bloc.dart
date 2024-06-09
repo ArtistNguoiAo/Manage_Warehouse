@@ -13,7 +13,7 @@ class ProductCreateBloc extends Bloc<ProductCreateEvent, ProductCreateState> {
     on<ProductCreateAddEvent>(_add);
   }
 
-  CreateProductUseCase _createProductUseCase = ConfigDi().injector.get();
+  final CreateProductUseCase _createProductUseCase = ConfigDi().injector.get();
 
   Future<void> _init(ProductCreateInitEvent event, Emitter<ProductCreateState> emit) async {
     emit(ProductCreateLoading());

@@ -9,6 +9,7 @@ class DatabaseProduct {
   static final DatabaseProduct db = DatabaseProduct._();
   static Database? _database;
 
+  // Khoi tao bang
   _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "MyDatabase.db");

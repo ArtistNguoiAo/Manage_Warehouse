@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-import 'package:risky_coin/domain/use_case/login_with_email_password_use_case.dart';
+import 'package:risky_coin/domain/use_case/auth_use_case/login_with_email_password_use_case.dart';
 import 'package:risky_coin/presentation/di/config_di.dart';
 import 'package:risky_coin/presentation/utils/text_utils.dart';
 

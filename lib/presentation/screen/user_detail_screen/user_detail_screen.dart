@@ -1,66 +1,62 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:risky_coin/domain/entity/product_entity.dart';
+import 'package:risky_coin/domain/entity/user_entity.dart';
 import 'package:risky_coin/presentation/common/text_field_common.dart';
-import 'package:risky_coin/presentation/screen/product_detail_screen/bloc/product_detail_bloc.dart';
+import 'package:risky_coin/presentation/screen/user_detail_screen/bloc/user_detail_bloc.dart';
 import 'package:risky_coin/presentation/utils/color_utils.dart';
 import 'package:risky_coin/presentation/utils/text_style_utils.dart';
 
 @RoutePage()
-class ProductDetailScreen extends StatelessWidget {
-  ProductDetailScreen({super.key, required this.id});
-
-  final int id;
+class UserDetailScreen extends StatelessWidget {
+  UserDetailScreen({super.key, required this.id});
+  final String id;
 
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController factoryController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductDetailBloc()..add(ProductDetailInitEvent(id: id)),
-      child: BlocConsumer<ProductDetailBloc, ProductDetailState>(
+      create: (context) => UserDetailBloc()..add(UserDetailInitEvent(id: id)),
+      child: BlocConsumer<UserDetailBloc, UserDetailState>(
         listener: (context, state) {
-          if(state is ProductDetailError) {
+          if(state is UserDetailError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
               ),
             );
           }
-          if(state is ProductDetailDeleted) {
+          if(state is UserDetailDeleted) {
             AutoRouter.of(context).maybePop(true);
           }
-          if(state is ProductDetailUpdated) {
+          if(state is UserDetailUpdated) {
             AutoRouter.of(context).maybePop(true);
           }
-          if(state is ProductDetailLoaded) {
-            nameController.text = state.productEntity.name;
-            descriptionController.text = state.productEntity.description;
-            factoryController.text = state.productEntity.workshop;
-            priceController.text = state.productEntity.price;
-            quantityController.text = state.productEntity.quantity;
+          if(state is UserDetailLoaded) {
+            nameController.text = state.userEntity.name;
+            emailController.text = state.userEntity.email;
+            phoneController.text = state.userEntity.phone;
+            addressController.text = state.userEntity.address;
           }
         },
         builder: (context, state) {
-          if(state is ProductDetailLoading) {
+          if(state is UserDetailLoading) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if(state is ProductDetailLoaded) {
+          if(state is UserDetailLoaded) {
             return Scaffold(
               appBar: AppBar(
                 title: const Text(
-                  "Chi tiết sản phẩm",
+                  "Chi tiết nhân viên",
                   style: TextStyle(
                     fontSize: 28,
                     color: ColorUtils.black,
@@ -73,15 +69,13 @@ class ProductDetailScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        _item("Tên sản phẩm", nameController),
+                        _item("Tên", nameController),
                         const SizedBox(height: 16.0),
-                        _item("Mô tả sản phẩm", descriptionController),
+                        _item("Email", emailController),
                         const SizedBox(height: 16.0),
-                        _item("Xưởng sản xuất", factoryController),
+                        _item("Số điện thoại", phoneController),
                         const SizedBox(height: 16.0),
-                        _item("Giá thành", priceController),
-                        const SizedBox(height: 16.0),
-                        _item("Số lượng", quantityController),
+                        _item("Địa chỉ", addressController),
                         const SizedBox(height: 32.0),
                         _button(context),
                       ],
@@ -118,16 +112,17 @@ class ProductDetailScreen extends StatelessWidget {
         Expanded(child: Container()),
         InkWell(
           onTap: () {
-            context.read<ProductDetailBloc>().add(ProductDetailUpdateEvent(
-              productEntity: ProductEntity(
-                id: id,
-                name: nameController.text,
-                description: descriptionController.text,
-                workshop: factoryController.text,
-                price: priceController.text,
-                quantity: quantityController.text,
+            context.read<UserDetailBloc>().add(
+              UserDetailUpdateEvent(
+                userEntity: UserEntity(
+                  id: id,
+                  name: nameController.text,
+                  email: emailController.text,
+                  phone: phoneController.text,
+                  address: addressController.text,
+                ),
               ),
-            ));
+            );
           },
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -147,7 +142,8 @@ class ProductDetailScreen extends StatelessWidget {
         const SizedBox(width: 16.0),
         InkWell(
           onTap: () {
-            context.read<ProductDetailBloc>().add(ProductDetailDeleteEvent(id: id));
+            print(("TrungLQ: " + id));
+            context.read<UserDetailBloc>().add(UserDetailDeleteEvent(id: id));
           },
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,

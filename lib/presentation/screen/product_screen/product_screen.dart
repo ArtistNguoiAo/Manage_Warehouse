@@ -9,14 +9,9 @@ import 'package:risky_coin/presentation/utils/color_utils.dart';
 
 
 @RoutePage()
-class ProductScreen extends StatefulWidget {
+class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
 
-  @override
-  State<ProductScreen> createState() => _ProductScreenState();
-}
-
-class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
