@@ -1,22 +1,21 @@
 # App quản lý kho và nhân viên
-# Mô hình sử dụng: Clean Architecture: tạo ra một cấu trúc mã nguồn rõ ràng và dễ bảo trì, thông qua việc phân tách rõ ràng 
-# các trách nhiệm giữa các thành phần khác nhau của ứng dụng
+## Mô hình sử dụng: Clean Architecture: tạo ra một cấu trúc mã nguồn rõ ràng và dễ bảo trì, thông qua việc phân tách rõ ràngcác trách nhiệm giữa các thành phần khác nhau của ứng dụng
 ## Em chia làm 3 tầng cơ bản:
-    - Tầng Presentation**:** Chứa UI (User Interface) và logic xử lý giao diện người dùng (như là Bloc, getX, …)
-    - Tầng Domain: Định nghĩa các quy tắc nghiệp vụ và các entity (đối tượng nghiệp vụ). Tầng này là lõi của ứng dụng và không phụ thuộc vào bất kỳ tầng nào khác, đảm bảo rằng logic nghiệp vụ có thể được tái sử dụng và kiểm thử dễ dàng.
-    - Tầng Data: Quản lý truy cập dữ liệu và thực hiện các thao tác dữ liệu, bao gồm giao tiếp với database, mạng, và các dịch vụ.
-    - **Presentation**:
-        - **`pages`**: Chứa các màn hình của ứng dụng.
-        - **`widgets`**: Các widget tái sử dụng trong ứng dụng.
-        - **`blocs`** hoặc **`view_models`**: Logic điều khiển trạng thái cho UI.
-    - **Domain**:
-        - **`entities`**: Mô hình dữ liệu không chứa bất kỳ logic ứng dụng cụ thể nào.
-        - **`use_cases`**: Chứa các tác vụ nghiệp vụ, mô tả "công việc" ứng dụng cần thực hiện.
-        - **`repositories`**: Interfaces mà lớp Data sẽ cài đặt, giúp giảm sự phụ thuộc giữa lớp Data và Domain.
-    - **Data**:
-        - **`models`**: Mô hình dữ liệu dùng để trao đổi dữ liệu giữa các lớp, thường có các phương thức để chuyển đổi từ/đến Entities.
-        - **`datasources`**: Cài đặt cụ thể cho việc truy cập dữ liệu, như API hoặc cơ sở dữ liệu địa phương.
-        - **`repositories`**: Cài đặt cụ thể của interfaces được định nghĩa trong Domain.
+### Tầng Presentation**:** Chứa UI (User Interface) và logic xử lý giao diện người dùng (như là Bloc, getX, …)
+### Tầng Domain: Định nghĩa các quy tắc nghiệp vụ và các entity (đối tượng nghiệp vụ). Tầng này là lõi của ứng dụng và không phụ thuộc vào bất kỳ tầng nào khác, đảm bảo rằng logic nghiệp vụ có thể được tái sử dụng và kiểm thử dễ dàng.
+### Tầng Data: Quản lý truy cập dữ liệu và thực hiện các thao tác dữ liệu, bao gồm giao tiếp với database, mạng, và các dịch vụ.
+#### **Presentation**:
+##### **`pages`**: Chứa các màn hình của ứng dụng.
+##### **`widgets`**: Các widget tái sử dụng trong ứng dụng.
+##### **`blocs`** hoặc **`view_models`**: Logic điều khiển trạng thái cho UI.
+#### **Domain**:
+##### **`entities`**: Mô hình dữ liệu không chứa bất kỳ logic ứng dụng cụ thể nào.
+##### **`use_cases`**: Chứa các tác vụ nghiệp vụ, mô tả "công việc" ứng dụng cần thực hiện.
+##### **`repositories`**: Interfaces mà lớp Data sẽ cài đặt, giúp giảm sự phụ thuộc giữa lớp Data và Domain.
+#### **Data**:
+##### **`models`**: Mô hình dữ liệu dùng để trao đổi dữ liệu giữa các lớp, thường có các phương thức để chuyển đổi từ/đến Entities.
+##### **`datasources`**: Cài đặt cụ thể cho việc truy cập dữ liệu, như API hoặc cơ sở dữ liệu địa phương.
+##### **`repositories`**: Cài đặt cụ thể của interfaces được định nghĩa trong Domain.
 
 ## Quản lí state:
     - **Flutter Bloc**: Thư viện quản lý trạng thái ứng dụng dựa trên mô hình Bloc.
